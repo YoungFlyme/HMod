@@ -466,7 +466,7 @@ void CLua::RegisterLuaCallbacks()
 			.addFunction("SetWeaponAutoFire", &CCharacter::SetWeaponAutoFire)
 			.addFunction("WeaponSlot", &CCharacter::WeaponSlot)
 			.addFunction("ActiveWeaponSlot", &CCharacter::GetActiveWeaponSlot)
-            
+
             .addData("AttackTick", &CCharacter::m_AttackTick)
             .addData("ReloadTimer", &CCharacter::m_ReloadTimer)
 
