@@ -1,9 +1,11 @@
 #include <engine/lua_include.h>
 #include <engine/storage.h>
 
+#include <game/gamecore.h>
 #include <game/server/gamecontroller.h>
 #include <game/server/gamecontext.h>
 #include <game/server/gameworld.h>
+#include <game/gamecore.h>
 #include <game/collision.h>
 #include <game/voting.h>
 
@@ -24,7 +26,6 @@
 #include "lua.h"
 
 #include <engine/server/server.h>
-
 
 void CLua::RegisterLuaCallbacks()
 {
@@ -202,7 +203,16 @@ void CLua::RegisterLuaCallbacks()
 			.addFunction("GetTileRaw", &CCollision::GetTileRaw)
 		.endClass()
 
+		/// Srv.Game.Tuning
+#define MACRO_TUNING_PARAM(Name,ScriptName,Value) \
+		.addData(#Name,&CTuningParams::m_##Name)
 		.beginClass<CTuningParams>("CTuningParams")
+			#include <game/tuning.h>
+		.endClass()
+#undef MACRO_TUNING_PARAM
+
+		.beginClass<CTuneParam>("CTuneParam")
+			.addProperty("Value",CTuneParam::Get,CTuneParam::Set)
 		.endClass()
 
 		/// Srv.Game.World
@@ -466,9 +476,9 @@ void CLua::RegisterLuaCallbacks()
 			.addFunction("SetWeaponAutoFire", &CCharacter::SetWeaponAutoFire)
 			.addFunction("WeaponSlot", &CCharacter::WeaponSlot)
 			.addFunction("ActiveWeaponSlot", &CCharacter::GetActiveWeaponSlot)
-            
-            .addData("AttackTick", &CCharacter::m_AttackTick)
-            .addData("ReloadTimer", &CCharacter::m_ReloadTimer)
+
+			.addData("AttackTick", &CCharacter::m_AttackTick)
+			.addData("ReloadTimer", &CCharacter::m_ReloadTimer)
 
 			.addData("AttackTick", &CCharacter::m_AttackTick)
 			.addData("ReloadTimer", &CCharacter::m_ReloadTimer)
