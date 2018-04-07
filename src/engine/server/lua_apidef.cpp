@@ -205,15 +205,15 @@ void CLua::RegisterLuaCallbacks()
 
 		/// Srv.Game.Tuning
 #define MACRO_TUNING_PARAM(Name,ScriptName,Value) \
-		.addData(#Name,&CTuningParams::m_##Name)
+		.addProperty(#Name, &CTuningParams::GetTuneF_##Name, &CTuningParams::SetTuneF_##Name) \
+        .addProperty(#ScriptName, &CTuningParams::GetTuneF_##Name, &CTuningParams::SetTuneF_##Name)\
+        .addProperty(("_"#Name), &CTuningParams::GetTuneI_##Name, &CTuningParams::SetTuneI_##Name)\
+        .addProperty(("_"#ScriptName), &CTuningParams::GetTuneI_##Name, &CTuningParams::SetTuneI_##Name)
+
 		.beginClass<CTuningParams>("CTuningParams")
 			#include <game/tuning.h>
 		.endClass()
 #undef MACRO_TUNING_PARAM
-
-		.beginClass<CTuneParam>("CTuneParam")
-			.addProperty("Value",CTuneParam::Get,CTuneParam::Set)
-		.endClass()
 
 		/// Srv.Game.World
 		.beginClass<CGameWorld>("CGameWorld")
