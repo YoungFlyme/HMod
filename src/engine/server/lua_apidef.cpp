@@ -254,7 +254,7 @@ void CLua::RegisterLuaCallbacks()
 			.addFunction("CreateHammerHit", &CGameContext::CreateHammerHit)
 			.addFunction("CreatePlayerSpawn", &CGameContext::CreatePlayerSpawn)
 			.addFunction("CreateDeath", &CGameContext::CreateDeath)
-			.addFunction("CreateSound", &CGameContext::CreateSound)
+			.addFunction("CreateSound", &CGameContext::CreateSoundLua)
 			.addFunction("CreateSoundGlobal", &CGameContext::CreateSoundGlobal)
 
 			.addFunction("SendChatTarget", &CGameContext::SendChatTarget)
