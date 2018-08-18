@@ -488,9 +488,6 @@ void CLua::RegisterLuaCallbacks()
 			.addData("AttackTick", &CCharacter::m_AttackTick)
 			.addData("ReloadTimer", &CCharacter::m_ReloadTimer)
 
-			.addData("AttackTick", &CCharacter::m_AttackTick)
-			.addData("ReloadTimer", &CCharacter::m_ReloadTimer)
-
 			.addFunction("SetEmote", &CCharacter::SetEmote)
 
 			.addProperty("IsAlive", &CCharacter::IsAlive)
