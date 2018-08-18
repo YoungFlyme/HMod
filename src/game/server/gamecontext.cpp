@@ -314,13 +314,14 @@ void CGameContext::CreateDeath(vec2 Pos, int ClientID)
 	}
 }
 
-void CGameContext::CreateSound(vec2 Pos, int Sound, Cmask *pMask)
+void CGameContext::CreateSound(vec2 Pos, int Sound, int Mask)
 {
+	// changed Cmask *pMask to an int again to not crashing the server when creating a sound!
 	if (Sound < 0)
 		return;
 
 	// create a sound
-	CNetEvent_SoundWorld *pEvent = (CNetEvent_SoundWorld *)m_Events.Create(NETEVENTTYPE_SOUNDWORLD, sizeof(CNetEvent_SoundWorld), pMask);
+	CNetEvent_SoundWorld *pEvent = (CNetEvent_SoundWorld *)m_Events.Create(NETEVENTTYPE_SOUNDWORLD, sizeof(CNetEvent_SoundWorld), Mask);
 	if(pEvent)
 	{
 		pEvent->m_X = (int)Pos.x;
