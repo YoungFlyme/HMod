@@ -127,7 +127,7 @@ public:
 	void CreateHammerHit(vec2 Pos);
 	void CreatePlayerSpawn(vec2 Pos);
 	void CreateDeath(vec2 Pos, int Who);
-	void CreateSound(vec2 Pos, int Sound, struct Cmask *pMask=0);
+	void CreateSound(vec2 Pos, int Sound, int Mask=0);
 	void CreateSoundGlobal(int Sound, int Target=-1);
 
 
